@@ -1,0 +1,49 @@
+{
+    "version": 6,
+    "cmakeMinimumRequired": {
+      "major": 3,
+      "minor": 25
+    },
+    "configurePresets": [
+        {
+            "name": "flags-clang-gcc",
+            "description": "Common compiler flags for both Clang and GCC",
+            "hidden": true,
+            "cacheVariables": {
+                "CMAKE_CXX_FLAGS": "-Wall -Wextra -Werror -O3"
+            }
+        },
+        {
+            "name": "release-clang-macos",
+            "displayName": "Release Clang macOS",
+            "inherits": "flags-clang-gcc",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Release",
+                "CMAKE_CXX_COMPILER": "clang++"
+            },
+            "binaryDir": "${sourceDir}/build/${presetName}"
+        },
+        {
+            "name": "release-gcc-macos",
+            "displayName": "Release GCC macOS",
+            "inherits": "flags-clang-gcc",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Release",
+                "CMAKE_CXX_COMPILER": "/opt/homebrew/bin/g++-13"
+            },
+            "binaryDir": "${sourceDir}/build/${presetName}"
+        }
+    ],
+    "buildPresets": [
+        {
+            "name": "clang-macos",
+            "displayName": "Clang macOS",
+            "configurePreset": "release-clang-macos"
+        },
+        {
+            "name": "gcc-macos",
+            "displayName": "GCC macOS",
+            "configurePreset": "release-gcc-macos"
+        }
+    ]
+}

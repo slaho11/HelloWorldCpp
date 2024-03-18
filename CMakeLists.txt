@@ -8,11 +8,6 @@ project(
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
-add_compile_options(
-    -Wall
-    -Wextra
-    -Werror
-)
 
 include(FetchContent)
 FetchContent_Declare(
@@ -26,3 +21,4 @@ add_executable(HelloWorld main.cpp)
 target_link_libraries(HelloWorld PRIVATE fmt::fmt)
 
 message(STATUS "Used compiler: ${CMAKE_CXX_COMPILER} version ${CMAKE_CXX_COMPILER_VERSION}")
+message(STATUS "Compiler flags: ${CMAKE_CXX_FLAGS}")
